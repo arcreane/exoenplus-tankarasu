@@ -22,7 +22,7 @@ public class exoSuppAlgo {
 
         switch (userChoice) {
             case "1":
-                System.out.println("choix 1");
+                guessTheNumber.launchTheGame();
                 break;
             case "2":
                 System.out.println("choix 2");
