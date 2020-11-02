@@ -25,7 +25,7 @@ public class exoSuppAlgo {
                 guessTheNumber.launchTheGame();
                 break;
             case "2":
-                System.out.println("choix 2");
+                palindrome.testTheString();
                 break;
 
             case "3":
