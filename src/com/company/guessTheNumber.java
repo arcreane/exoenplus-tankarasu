@@ -1,5 +1,7 @@
 package com.company;
 
+import com.sun.source.tree.DoWhileLoopTree;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -12,12 +14,14 @@ public class guessTheNumber {
         int TheNumberToFind = (number.nextInt(100)) + 1;
         int attempt = 10;
         boolean won = false;
+        boolean endGame = false;
 
-        for (int i = attempt; i > 0; i--) {
-
-
+        do {
+            attempt--;
+            //récupère UserInput
             System.out.println("Guess a number his/her Majesty:");
             int userInput = userGuess.nextInt();
+
             if (userInput > TheNumberToFind) {
                 System.out.println("Your guess is too HIGH Majesty.");
             } else if (userInput < TheNumberToFind) {
@@ -25,13 +29,16 @@ public class guessTheNumber {
             } else {
                 System.out.println("you are a great Player MAJESTY. \nLong life to his/her Majesty.");
                 won = true;
-                return;
+                exoSuppAlgo.launchGame();
             }
 
-        }
+            //Conditions de sortie du jeu
+            if (attempt == 0 & !won) {
+                System.out.println("You loose my majesty");
+                endGame = true;
+                exoSuppAlgo.launchGame();
+            }
 
-        String result = if(won)?"Gagné":"Perdu";
-
+        } while (!won & !endGame);
     }
-
 }
