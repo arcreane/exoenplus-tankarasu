@@ -33,10 +33,10 @@ public class guessTheNumber {
             }
 
             //Conditions de sortie du jeu
-            if (attempt == 0 & !won) {
+            if (attempt == 0 & !won) {//si pas gagné et plus de tour = perdu
                 System.out.println("You loose my majesty");
                 endGame = true;
-                exoSuppAlgo.launchGame();
+                exoSuppAlgo.launchGame();//permet de rejoindre le menu principale
             }
 
         } while (!won & !endGame);
