@@ -49,7 +49,7 @@ public class mineSweeper {
      */
     public static void drawBoard(int level[]) {
         int row = level[0], column = level[1], numberOfMine = level[2];
-        String[][] theBoard = new String[row][column];
+        String[][][] theBoard = new String[row][column][2];
         String separateBars = "";
         String lastRow = "| ";
         int lengthForBars = theBoard[0].length * 3 + 5;
@@ -74,7 +74,7 @@ public class mineSweeper {
         for (int i = 0; i < theBoard.length; i++) {
             String oneRow = "| ";
             for (int j = 0; j < theBoard[i].length; j++) {
-                oneRow += theBoard[i][j] + "  ";
+                oneRow += theBoard[i][j][1] + "  ";
             }
             oneRow += "| " + i;
             System.out.println(oneRow);
@@ -84,32 +84,46 @@ public class mineSweeper {
 
     }
 
-    public static void fillTheBoard(String board[][]) {
+    public static void fillTheBoard(String[][][] board) {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
-                board[i][j] = "O";
+                board[i][j][1] = "\u2580";
             }
         }
+
         placeMine(difficulties[userChoice], board);
         // board[5][10]= "M"; 5 = ordonnée , 10 = abscisse;
+
     }
 
     public static void isEndGame() {
 
     }
 
-    public static void placeMine(int level[], String aBoard[][]) {
-        int mineX = numberRandom.nextInt(level[0]);
-        int mineY = numberRandom.nextInt(level[1]);
-        aBoard[mineY][mineX] = "M";
+    /**
+     * This fonction place mines on the board
+     *
+     * @param level  - determines number of mine and size of the board
+     * @param aBoard - the board to fill with mines
+     */
+    public static void placeMine(int[] level, String[][][] aBoard) {
+
+        int numberOfMine = level[2];
+        while (numberOfMine > 0) {
+            int mineX = numberRandom.nextInt(level[0]);
+            int mineY = numberRandom.nextInt(level[1]);
+            if (aBoard[mineX][mineY][0] != "M") {
+                aBoard[mineX][mineY][0] = "M";
+                numberOfMine--;
+                // System.out.println(mineX +" "+mineY);
+                // System.out.print(aBoard[mineX][mineY][0] +" ");
+                // System.out.println(aBoard[mineX][mineY][1]);
+            }
+        }
+
     }
 
     // conditions of win & loses
-    // menu to choose difficulties
-    // 2 dimensionnal board
-    // dimensions from difficulties
-    // number of mine from difficulties
-    // fonction random qui place les mines
 
     // état de la cellule : open, close ,flagged
 
